@@ -1,0 +1,24 @@
+repos:
+  # Standard Python Linters/Formatters/Checkers
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0 # Use the latest stable release version
+    hooks:
+      - id: trailing-whitespace   # Removes superfluous whitespace at the end of lines
+      - id: end-of-file-fixer     # Ensures files end with a newline
+      - id: check-yaml            # Checks YAML file syntax
+      - id: check-added-large-files # Prevents committing very large files
+      - id: check-case-conflict   # Checks for files that would conflict on a case-insensitive filesystem
+      - id: detect-private-key    # Detects accidental private key commits
+        args: [--fix=lf]
+
+  - repo: https://github.com/psf/black
+    rev: 24.4.2 # Use the latest stable release version
+    hooks:
+      - id: black               # An uncompromising code formatter
+        language_version: python3 # Adjust if using a different Python version
+
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.13.2 # Use the latest stable release version
+    hooks:
+      - id: isort               # Sorts Python imports
+        args: ["--profile", "black"] # Use black profile to be compatible with black formatter

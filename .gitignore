@@ -1,0 +1,43 @@
+# Python
+# ========================
+# Byte-code files
+*.pyc
+*.pyd
+*.pyo
+__pycache__/
+
+# Distribution / packaging
+.Python
+build/
+dist/
+
+# Virtual environment
+# Name of the virtual environment directory (common names)
+.venv/
+venv/
+env/
+# Specific virtual environment types (if you use them)
+.env/
+.env.*
+.conda/
+.direnv/
+
+# Logs
+*.log
+logs/
+
+# Testing and coverage
+.pytest_cache/
+
+
+# IDEs and Editors
+# ========================
+# PyCharm
+.idea/
+.vscode/ # VS Code
+
+# Environment variables
+# ========================
+.env # Generic .env file for environment variables
+.env.local # Local environment variables
+*.env # Any file ending with .env
