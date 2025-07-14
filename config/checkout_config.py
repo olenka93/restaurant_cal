@@ -1,6 +1,7 @@
 from dataclasses import dataclass
-from typing import Dict
 from datetime import time
+from typing import Dict
+
 from models.order_model import ItemType
 
 

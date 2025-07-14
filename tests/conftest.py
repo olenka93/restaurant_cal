@@ -1,7 +1,6 @@
 import logging
 
 import pytest
-
 from logger_config import setup_logging
 
 
@@ -46,7 +45,11 @@ def parse_gherkin_table():
             list[dict]: A list of dictionaries, with headers as keys and values from rows.
                        'quantity' fields are converted to integers.
         """
-        if not (isinstance(table_data, list) and table_data and all(isinstance(row, list) for row in table_data)):
+        if not (
+            isinstance(table_data, list)
+            and table_data
+            and all(isinstance(row, list) for row in table_data)
+        ):
             return []
 
         headers = [h.strip() for h in table_data[0]]
@@ -54,7 +57,7 @@ def parse_gherkin_table():
         try:
             return [
                 {
-                    k: int(v.strip()) if k == 'quantity' else v.strip()
+                    k: int(v.strip()) if k == "quantity" else v.strip()
                     for k, v in zip(headers, row)
                 }
                 for row in table_data[1:]

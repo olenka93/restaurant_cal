@@ -1,10 +1,10 @@
-import requests
 import logging
+
+import requests
 
 BASE_URL = "http://localhost:5000"
 
-from pytest_bdd import given, when, then, parsers, scenarios, scenario
-
+from pytest_bdd import given, parsers, scenario, scenarios, then, when
 
 scenarios("../features/test_checkout_feature_real_app.feature")
 

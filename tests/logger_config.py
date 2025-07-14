@@ -19,6 +19,4 @@ def setup_logging(level=logging.INFO):
     # Set levels for specific loggers
     logging.getLogger("flask-app").setLevel(level)
     logging.getLogger("bdd-tests").setLevel(level)
-    logging.getLogger("werkzeug").setLevel(
-        logging.ERROR
-    )
+    logging.getLogger("werkzeug").setLevel(logging.ERROR)

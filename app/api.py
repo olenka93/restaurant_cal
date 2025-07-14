@@ -4,8 +4,10 @@ import traceback
 import uuid
 from functools import wraps
 from http import HTTPStatus
-from typing import Dict, List, Tuple, Callable
-from flask import Flask, jsonify, request, Response
+from typing import Callable, Dict, List, Tuple
+
+from flask import Flask, Response, jsonify, request
+
 from app.checkout_calculator import CheckoutCalculator
 from tests.logger_config import setup_logging
 
