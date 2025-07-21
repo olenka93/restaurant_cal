@@ -9,9 +9,14 @@ from typing import Callable, Dict, List, Tuple
 from flask import Flask, Response, jsonify, request
 
 from app.checkout_calculator import CheckoutCalculator
-from tests.logger_config import setup_logging
+from app.logger_config import setup_logging
 
-setup_logging()
+setup_logging(
+    level=logging.INFO,
+    log_to_file=True,
+    log_file_path="logs/flask-app.log",
+    logger_name="flask-app",
+)
 logger = logging.getLogger("flask-app")
 app = Flask(__name__)
 
@@ -24,7 +29,7 @@ def validate_checkout_data(data: Dict) -> Tuple[List, str]:
     """Validate and extract checkout data from request"""
     if not isinstance(data, dict):
         raise ValueError("Invalid request format: JSON object expected")
-
+    logger.debug("Checkout payload: %s", data)
     items = data.get("items")
     order_time = data.get("order_time", "")
 

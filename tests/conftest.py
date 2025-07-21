@@ -1,20 +1,22 @@
 import logging
+import os
 
 import pytest
-from logger_config import setup_logging
+import responses
+
+from app.logger_config import setup_logging
 
 
 def pytest_configure(config):
-    setup_logging(level=logging.INFO)
+    logs_dir = "logs/tests"
+    os.makedirs(logs_dir, exist_ok=True)
     worker_id = getattr(config, "workerinput", {}).get("workerid", "master")
-
-    # Create a unique log file for each worker
-    log_file = f"test_log_{worker_id}.txt"
-    log_file_handler = logging.FileHandler(log_file, mode="w")
-    log_file_handler.setFormatter(
-        logging.Formatter("[%(asctime)s] [%(levelname)s] [%(name)s] %(message)s")
+    setup_logging(
+        level=logging.INFO,
+        log_to_file=True,
+        log_file_path=f"logs/tests/test_log_{worker_id}.log",
+        logger_name="bdd-tests",
     )
-    logging.getLogger().addHandler(log_file_handler)
 
 
 logger = logging.getLogger("bdd-tests")
@@ -30,6 +32,12 @@ def log_test_start_and_end():
 @pytest.fixture
 def context():
     return {}
+
+
+@pytest.fixture
+def mock_responses():
+    with responses.RequestsMock() as rsps:
+        yield rsps
 
 
 @pytest.fixture
